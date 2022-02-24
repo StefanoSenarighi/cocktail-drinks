@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseCocktailGet } from '../model/cocktail-drink.model';
+import { Drink, ResponseCocktailGet } from '../model/cocktail-drink.model';
 
 @Injectable({
     providedIn: 'root'
@@ -49,6 +49,26 @@ export class CocktailDrinksDbService {
     getListAlcoholic(): Observable<ResponseCocktailGet> {
         const params = new HttpParams().set('a', 'list');
         return this.http.get<ResponseCocktailGet>(`${environment.api.list}`, { params });
+    }
+
+    mapIngredient(drinkMap: Map<any, any>, meausures = false, index = 1, ingredients: string[] = []): any {
+
+        const strIngredient = 'strIngredient' + index;
+        const strMeasure = 'strMeasure' + index;
+        const ingredient = drinkMap.get(strIngredient);
+
+        if (!ingredient) {
+            return ingredients;
+        }
+
+        ingredients.push(meausures && drinkMap.get(strMeasure) ? `${drinkMap.get(strMeasure)} ${ingredient}` : ingredient);
+        return this.mapIngredient(drinkMap, meausures, ++index, ingredients);
+
+    }
+
+    mapDrink(drinks: Drink[]): Drink[] {
+        drinks.map(drink => drink.ingredient = this.mapIngredient(new Map(Object.entries(drink)), false));
+        return drinks;
     }
 }
 

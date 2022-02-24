@@ -1,0 +1,87 @@
+<section class="section">
+
+    <div class="container">
+        <h2>Reserch Cocktail and Drink</h2>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxHide.xs="true">
+            <form [formGroup]="filterCocktailForm" class="form" (ngSubmit)="onSubmit()" novalidate>
+                <mat-form-field class="form-element" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Ingredients</mat-label>
+                    <mat-select formControlName="ingredient">
+                        <mat-option *ngFor="let ingredients of listOfIngredients" [value]="ingredients">{{ingredients}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Cathegory</mat-label>
+                    <mat-select formControlName="cathegory">
+                        <mat-option *ngFor="let cat of listOfCathegory" [value]="cat">{{cat}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Alcoholic</mat-label>
+                    <mat-select formControlName="alcoholic">
+                        <mat-option *ngFor="let alcoholic of listOfAlcoholic" [value]="alcoholic">{{alcoholic}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button class="mat-button-form" type="reset">Reset Filter</button>
+                <button mat-raised-button class="mat-button-form" color="primary" type="submit" [disabled]="filterCocktailForm.invalid">Filter</button>
+            </form>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end" fxShow.xs="true" fxHide.gt-xs="true" [style.padding-bottom.px]="16">
+            <button mat-button color="primary" (click)="toggleOpenFilter()">{{openFilter === 'out' ? 'Show filter' : 'Hide filter'}}</button>
+        </div>
+
+        <div [@slideInOut]="openFilter" fxLayout="row" fxShow.xs="true" fxHide.gt-xs="true" class="form-xs">
+            <form [formGroup]="filterCocktailForm" class="form" (ngSubmit)="onSubmit()" novalidate>
+                <mat-form-field class="mat-form-field-xs" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field class="mat-form-field-xs" appearance="fill">
+                    <mat-label>Ingredients</mat-label>
+                    <mat-select formControlName="ingredient">
+                        <mat-option *ngFor="let ingredients of listOfIngredients" [value]="ingredients">{{ingredients}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="mat-form-field-xs" appearance="fill">
+                    <mat-label>Cathegory</mat-label>
+                    <mat-select formControlName="cathegory">
+                        <mat-option *ngFor="let cat of listOfCathegory" [value]="cat">{{cat}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="mat-form-field-xs" appearance="fill">
+                    <mat-label>Alcoholic</mat-label>
+                    <mat-select formControlName="alcoholic">
+                        <mat-option *ngFor="let alcoholic of listOfAlcoholic" [value]="alcoholic">{{alcoholic}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button class="mat-button-form" type="reset">Reset Filter</button>
+                <button mat-raised-button class="mat-button-form" color="primary" type="submit" [disabled]="filterCocktailForm.invalid">Filter</button>
+            </form>
+        </div>
+
+        <div class="container-drinks" fxLayout="row wrap" fxLayoutGap="32px grid" *ngIf="!!cocktailDrinks; else loaderDrink">
+            <div fxFlex.gt-md="33" fxFlex.gt-xs="50" fxFlex.xs="100" *ngFor="let cocktail of cocktailDrinks">
+            </div>
+        </div>
+
+        <ng-template #loaderDrink>
+            <ngx-skeleton-loader count="6" appearance="circle" [theme]="{ 'width.px': 375, 'height.px': 575, 'border-radius': '10px'}">
+            </ngx-skeleton-loader>
+        </ng-template>
+    </div>
+</section>
