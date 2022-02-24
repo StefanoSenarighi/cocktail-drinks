@@ -29,6 +29,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { LocalStorageService } from './service/local-storage.service';
 import { EmptyPageComponent } from './components/empty-page/empty-page.component';
+import { DetailCocktailDrinkComponent } from './components/detail-cocktail-drink/detail-cocktail-drink.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { EmptyPageComponent } from './components/empty-page/empty-page.component
         CocktailDrinkComponent,
         AppElevationDirective,
         FavoritesComponent,
-        EmptyPageComponent
+        EmptyPageComponent,
+        DetailCocktailDrinkComponent
     ],
     imports:[
         AppRoutingModule,
