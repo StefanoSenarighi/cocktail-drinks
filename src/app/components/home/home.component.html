@@ -76,6 +76,7 @@
 
         <div class="container-drinks" fxLayout="row wrap" fxLayoutGap="32px grid" *ngIf="!!cocktailDrinks; else loaderDrink">
             <div fxFlex.gt-md="33" fxFlex.gt-xs="50" fxFlex.xs="100" *ngFor="let cocktail of cocktailDrinks">
+                <app-cocktail-drink [cocktailDrink]="cocktail"></app-cocktail-drink>
             </div>
         </div>
 

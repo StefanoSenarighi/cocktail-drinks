@@ -1,0 +1,39 @@
+::-webkit-scrollbar {
+    height: 0;
+}
+
+.mat-card-header-text {
+    margin: 0px !important;
+    text-align: start;
+}
+
+div.mat-chip-list-wrapper {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: -16px;
+
+    .mat-chip {
+        flex: 0 0 auto;
+        color: var(--white);
+    }
+}
+
+.mat-chip-list {
+    margin-left: 20px;
+}
+
+.mat-chip.mat-standard-chip .mat-chip-remove {
+    color: var(--white);
+}
+
+.pointer-img {
+    cursor: pointer;
+}
+
+.truncate-text {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}

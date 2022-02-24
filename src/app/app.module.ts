@@ -23,12 +23,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CocktailDrinkComponent } from './components/cocktail-drink/cocktail-drink.component';
+import { AppElevationDirective } from './components/directive/app-elevation.directive';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        HeaderComponent],
+        HeaderComponent,
+        CocktailDrinkComponent,
+        AppElevationDirective],
     imports:[
         AppRoutingModule,
         BrowserModule,
@@ -51,7 +56,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatDialogModule,
         MatInputModule,
         MatRadioModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatCardModule
 
     ],
     providers: [CocktailDrinksDbService],
