@@ -1,0 +1,16 @@
+.content-empty-page {
+    height: calc(100vh - 340px);
+
+    .scale-img {
+        transform: scale(6);
+        color: darkgray;
+    }
+
+    .message {
+        padding-top: 80px;
+        font-size: 30px;
+        color: darkgray;
+        text-align: center;
+        line-height: 50px;
+    }
+}

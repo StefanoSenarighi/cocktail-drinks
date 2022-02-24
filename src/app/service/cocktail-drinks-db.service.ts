@@ -1,3 +1,4 @@
+import { LocalStorageService } from './local-storage.service';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,7 +10,8 @@ import { Drink, ResponseCocktailGet } from '../model/cocktail-drink.model';
 })
 export class CocktailDrinksDbService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+                private localStorageService: LocalStorageService) { }
 
     getCocktailDrinkById(id: number): Observable<ResponseCocktailGet> {
         const params = new HttpParams().set('i', `${id}`);
@@ -67,7 +69,12 @@ export class CocktailDrinksDbService {
     }
 
     mapDrink(drinks: Drink[]): Drink[] {
-        drinks.map(drink => drink.ingredient = this.mapIngredient(new Map(Object.entries(drink)), false));
+        drinks.map(drink => {
+            drink.ingredient = this.mapIngredient(new Map(Object.entries(drink)), false);
+            drink.favorite = this.localStorageService.myFavoritesCocktail
+                .find(drinkFav => drinkFav.idDrink === drink.idDrink) ? true : false;
+        });
+
         return drinks;
     }
 }

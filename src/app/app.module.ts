@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -26,6 +26,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CocktailDrinkComponent } from './components/cocktail-drink/cocktail-drink.component';
 import { AppElevationDirective } from './components/directive/app-elevation.directive';
 import { MatCardModule } from '@angular/material/card';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { LocalStorageService } from './service/local-storage.service';
+import { EmptyPageComponent } from './components/empty-page/empty-page.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +36,10 @@ import { MatCardModule } from '@angular/material/card';
         HomeComponent,
         HeaderComponent,
         CocktailDrinkComponent,
-        AppElevationDirective],
+        AppElevationDirective,
+        FavoritesComponent,
+        EmptyPageComponent
+    ],
     imports:[
         AppRoutingModule,
         BrowserModule,
@@ -60,7 +66,14 @@ import { MatCardModule } from '@angular/material/card';
         MatCardModule
 
     ],
-    providers: [CocktailDrinksDbService],
+    providers: [
+        CocktailDrinksDbService,
+        LocalStorageService,
+        Location,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (ds: LocalStorageService) => () => ds.getDrinkFavorite(), deps: [LocalStorageService], multi: true
+        }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

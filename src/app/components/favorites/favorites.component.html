@@ -1,0 +1,16 @@
+<section class="section">
+    <div class="content">
+        <div *ngIf="cocktailDrinks?.length !== 0; else emptyPage">
+            <h2>Your favorite drinks:</h2>
+            <div fxLayout="row wrap" fxLayoutGap="32px grid">
+                <div fxFlex.lg="33" fxFlex.lt-lg="50" fxFlex.xs="100" *ngFor="let cocktail of cocktailDrinks">
+                    <app-cocktail-drink [cocktailDrink]="cocktail"></app-cocktail-drink>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #emptyPage>
+            <app-empty-page [icon]="'local_bar'" [message]="'You don\'t have any favorite drinks...'"></app-empty-page>
+        </ng-template>
+    </div>
+</section>
