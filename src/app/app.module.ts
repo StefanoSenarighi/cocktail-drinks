@@ -30,6 +30,8 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 import { LocalStorageService } from './service/local-storage.service';
 import { EmptyPageComponent } from './components/empty-page/empty-page.component';
 import { DetailCocktailDrinkComponent } from './components/detail-cocktail-drink/detail-cocktail-drink.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { QrCodeDrinkComponent } from './components/qr-code-drink/qr-code-drink.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +42,8 @@ import { DetailCocktailDrinkComponent } from './components/detail-cocktail-drink
         AppElevationDirective,
         FavoritesComponent,
         EmptyPageComponent,
-        DetailCocktailDrinkComponent
+        DetailCocktailDrinkComponent,
+        QrCodeDrinkComponent
     ],
     imports:[
         AppRoutingModule,
@@ -50,6 +53,7 @@ import { DetailCocktailDrinkComponent } from './components/detail-cocktail-drink
         ReactiveFormsModule,
         FormsModule,
         FlexLayoutModule,
+        QRCodeModule,
         NgxSkeletonLoaderModule.forRoot(),
 
         // Material
@@ -66,7 +70,6 @@ import { DetailCocktailDrinkComponent } from './components/detail-cocktail-drink
         MatRadioModule,
         MatSnackBarModule,
         MatCardModule
-
     ],
     providers: [
         CocktailDrinksDbService,
